@@ -1,0 +1,13 @@
+.footer {
+	background-color: var(--text-color);
+}
+
+.footer__wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--page-bg);
+	font-size: 54px;
+	// временная высота для футера, потом удалить
+	height: 676px;
+}

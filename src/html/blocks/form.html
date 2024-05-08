@@ -1,0 +1,67 @@
+<section class="form container">
+	<div class="form__wrapper">
+		<form class="form__action" action="#" method="post" id="form__car">
+			<fieldset class="form__fieldset">
+				<div class="form__box">
+					<label class="form__label" for="input-car">Автомобиль</label>
+					<button class="form__button" type="button">
+						<span class="form__sign">Выбрать автомобиль</span>
+					</button>
+				</div>
+
+				<div class="form__box form__box--margin">
+					<div class="form__block form__block--flex">
+						<span class="form__label">Срок кредитования</span>
+						<strong class="form__val form__strong" id="slider-range-value"></strong>
+					</div>
+
+					<div class="form__slider" id="form-slider"></div>
+				</div>
+
+				<div class="form__box form__box--margin">
+					<div class="form__block form__block--flex">
+						<span class="form__label">Первоначальный взнос:</span>
+						<strong class="form__val form__strong" id="slider-range-payment"></strong>
+					</div>
+
+					<div class="form__slider" id="form-payment"></div>
+				</div>
+
+				<div class="form__box form__box--row">
+					<span class="form__label">Ваш платеж:</span>
+					<strong class="form__val form__strong" id="form__total">0 ₽</strong>
+				</div>
+			</fieldset>
+
+			<fieldset class="form__fieldset">
+				<div class="form__box">
+					<label class='form__label' for="form-name">Имя</label>
+					<input class='form__input' type="text" name="form__name" id="form-name" placeholder='ФИО'>
+				</div>
+
+				<div class="form__box">
+					<label class='form__label' for="form-phone">Телефон</label>
+					<input class='form__input' type="text" name="form__phone" id="form-phone" placeholder='+7 (900) 000-00-00'
+						data-mask="phone">
+				</div>
+
+				<div class='form__box form__box--checkbox'>
+					<input class='form__checkbox' type="checkbox" name='form__citizenship' id='form-citizenship' required>
+					<label class='form__label' for="form-citizenship">Подтверждаю наличие гражданства РФ</label>
+				</div>
+
+				<div class='form__box form__box--checkbox'>
+					<input class='form__checkbox' type="checkbox" name='form__privacy' id='form-privacy' required>
+					<label class='form__label' for="form-privacy"><a class='form__link' href='#' target='_blank'>Я согласен с
+							условиями обработки персональных данных</a></label>
+				</div>
+
+				<div class='form__container'>
+					<button class='button form__send' type='submit'>
+						<span class='form__caption'>Оставить заявку</span>
+					</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>

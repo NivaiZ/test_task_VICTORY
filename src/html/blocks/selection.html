@@ -1,0 +1,43 @@
+<section class='selection'>
+	<div class='container'>
+
+		<div class='selection__form form'>
+			<div class='selection__heading heading'>
+				<h3 class='heading__h3'>Поможем в подборе авто</h3>
+			</div>
+
+			<form class='form__action' action="/" id='form-selection'>
+				<fieldset class="form__fieldset">
+					<div class="form__box">
+						<label class='form__label' for="form-name__selection">Имя</label>
+						<input class='form__input' type="text" name="form-name--selection" id="form-name__selection"
+							placeholder='ФИО'>
+					</div>
+
+					<div class="form__box">
+						<label class='form__label' for="form-phone__selection">Телефон</label>
+						<input class='form__input' type="text" name="form-phone--selection" id="form-phone__selection"
+							placeholder='+7 (900) 000-00-00' data-mask="phone">
+					</div>
+
+					<div class='form__box form__box--checkbox'>
+						<input class='form__checkbox' type="checkbox" name='form__privacy' id='form-privacy' required>
+						<label class='form__label' for="form-privacy"><a class='form__link' href='#' target='_blank'>Я согласен с
+								условиями обработки персональных данных</a></label>
+					</div>
+
+					<div class='form__container'>
+						<button class='button form__send' type='submit'>
+							<span class='form__caption'>Оставить заявку</span>
+						</button>
+					</div>
+				</fieldset>
+				<div class='form__picture'>
+					<figure class='form__figure'>
+						<img class='selection__img' src="./../img/vesta-cross-sw.png" alt="Логотип Весты кросс sw">
+					</figure>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

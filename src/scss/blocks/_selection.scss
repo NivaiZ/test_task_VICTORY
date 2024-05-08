@@ -1,0 +1,36 @@
+.selection {
+	background-color: var(--header__nav);
+	margin-top: 80px;
+	padding-bottom: 89px;
+
+	.form__send {
+		background-color: var(--button__application);
+	}
+
+	.form__fieldset {
+		width: 37%;
+		margin-right: 0;
+	}
+
+	.form__container {
+		margin-top: 37px;
+	}
+
+	.form__action {
+		position: relative;
+	}
+
+	.form__picture {
+		position: absolute;
+		right: -79px;
+		top: -20px;
+	}
+}
+
+.selection__form {
+	padding-top: 80px;
+}
+
+.selection__heading {
+	margin-bottom: 35px;
+}

@@ -1,0 +1,18 @@
+.nav__menu {
+	display: flex;
+	align-items: center;
+	max-width: 1320px;
+	margin: 0 auto;
+}
+
+.nav__list {
+	display: flex;
+	margin-left: 145px;
+}
+
+.nav__link {
+	color: var(--text-color);
+	padding: 20px;
+	font-size: 18px;
+	line-height: 25.2px;
+}

@@ -1,0 +1,30 @@
+.contacts__list {
+	display: flex;
+	align-items: center;
+	max-width: 1320px;
+	margin: 0 auto;
+}
+
+.contacts__element {
+	font-size: 18px;
+	line-height: 25.2px;
+}
+
+.contacts__item {
+	display: flex;
+	margin-right: 241.5px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.contacts__icon {
+	width: 24px;
+	height: 24px;
+	margin-right: 20px;
+}
+
+.contacts__link {
+	color: var(--text-color);
+}

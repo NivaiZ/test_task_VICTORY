@@ -1,0 +1,43 @@
+.timer__list {
+	display: flex;
+}
+
+.timer__number {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background-color: var(--page-bg);
+	padding: 9px;
+	font-size: 30px;
+	line-height: 36px;
+
+	&::before {
+		content: attr(data-title);
+		display: block;
+		line-height: 19.6px;
+		font-size: 14px;
+		position: absolute;
+		bottom: -25px;
+		color: var(--page-bg);
+	}
+}
+
+.timer__item {
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	width: 55px;
+	position: relative;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.timer__count {
+	color: var(--page-bg);
+	font-size: 14px;
+	line-height: 19.6px;
+	margin: 5px 0 0 5px;
+}

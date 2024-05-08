@@ -1,0 +1,30 @@
+.breadcrumbs__separator {
+	width: 5px;
+	height: 5px;
+	background-color: var(--link-color);
+	display: block;
+	border-radius: 20px;
+}
+
+.breadcrumbs__link {
+	font-size: 14px;
+	line-height: 19.6px;
+	color: var(--link-color);
+}
+
+.breadcrumbs__link--noactvie {
+	color: var(--gray);
+}
+
+.breadcrumbs__list {
+	display: flex;
+	align-items: center;
+}
+
+.breadcrumbs__item {
+	margin-right: 10px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
