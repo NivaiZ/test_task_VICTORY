@@ -5,17 +5,34 @@ export default function loadDataFunction() {
 		.then(data => {
 			const brands = data.brands
 			const models = data.models
+			const generation = data.generation
 
 			// Функция для обновления списка марок
 			function updateBrandsList(event) {
-				const clickedButton = event.target.closest('.modal__button')
+				const clickedButton = event.target.closest('[data-button="brand"]')
 				if (!clickedButton) return // Выходим, если клик не был по кнопке
 				const modalButtons = document.querySelectorAll('.modal__button')
 				modalButtons.forEach(button =>
 					button.classList.remove('modal__button-active')
 				)
-				clickedButton.classList.add('modal__button-active')
 
+				// Проверяем, была ли нажата та же кнопка data-button="brand"
+				const isActiveBrandButton = clickedButton.classList.contains(
+					'modal__button-active'
+				)
+
+				// Если нажата другая кнопка data-button="brand", устанавливаем активный класс
+				if (!isActiveBrandButton) {
+					clickedButton.classList.add('modal__button-active')
+
+					// Удаляем активный класс у кнопки data-button="model"
+					const activeModelButton = document.querySelector(
+						'.modal__button.modal__button-active[data-button="model"]'
+					)
+					if (activeModelButton) {
+						activeModelButton.classList.remove('modal__button-active')
+					}
+				}
 				const modalData = document.querySelector('.modal__data')
 				modalData.innerHTML = '' // Очищаем текущие данные
 
@@ -46,6 +63,9 @@ export default function loadDataFunction() {
 					brandSpan.textContent = brand.name
 					brandLi.onclick = function() {
 						updateModelsList(brand.name)
+						updateActiveButton(
+							document.querySelector('.modal__button[data-button="model"]')
+						) // Устанавливаем активный класс для кнопки модели
 					}
 
 					modalData.appendChild(brandLi)
@@ -55,29 +75,137 @@ export default function loadDataFunction() {
 			// Функция для обновления списка моделей
 			function updateModelsList(brand) {
 				const modalData = document.querySelector('.modal__data')
+				const modalGeneration = document.querySelector('.modal__generation')
 				modalData.innerHTML = '' // Очищаем текущие данные
+				modalGeneration.innerHTML = '' // Очищаем текущие данные
+
 				models[brand].forEach(model => {
-					const modelDiv = document.createElement('div')
+					const modelDiv = document.createElement('li')
 					modelDiv.className = 'modal__model'
-					modelDiv.textContent = model
-					modelDiv.onclick = function() {
-						updateActiveButton() // Устанавливаем активный класс для кнопки
-					}
+
+					const modelSpan = document.createElement('span')
+					modelSpan.textContent = model
+
+					const generationQuantitySpan = document.createElement('span')
+					generationQuantitySpan.classList.add('modal__brand-quantity')
+					generationQuantitySpan.textContent = ` ${
+						generation[brand] && generation[brand].length
+							? generation[brand].length
+							: 0
+					}`
+
+					modelDiv.appendChild(modelSpan)
+					modelDiv.appendChild(generationQuantitySpan)
+
+					modelDiv.addEventListener('click', function() {
+						displayGenerations(brand, model) // Отображаем поколения при клике на модель
+
+						const activeModelButton = document.querySelector(
+							'.modal__button.modal__button-active[data-button="model"]'
+						)
+						if (activeModelButton) {
+							activeModelButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
+						}
+						const activeGenerationButton = document.querySelector(
+							'.modal__button.modal__button-active[data-button="generation"]'
+						)
+						if (activeGenerationButton) {
+							activeGenerationButton.classList.remove('modal__button-active') // Снимаем активный класс с кнопки "Поколение"
+						}
+						document
+							.querySelector('.modal__button[data-button="generation"]')
+							.classList.add('modal__button-active') // Активируем кнопку "Поколение"
+						modalData.style.display = 'none' // Скрываем список моделей
+					})
+
 					modalData.appendChild(modelDiv)
+				})
+
+				// Добавляем обработчик клика на кнопку "Модель", чтобы показать снова список моделей
+				const modelButton = document.querySelector(
+					'.modal__button[data-button="model"]'
+				)
+				modelButton.addEventListener('click', function() {
+					modalData.style.display = 'grid' // Показываем список моделей
+					const activeButton = document.querySelector(
+						'.modal__button.modal__button-active[data-button="model"]'
+					)
+					if (activeButton) {
+						activeButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
+					}
 				})
 			}
 
-			// Функция для обновления активного состояния кнопки
-			function updateActiveButton() {
-				const activeButton = document.querySelector(
-					'.modal__button.modal__button-active'
-				)
-				if (activeButton) {
-					activeButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
+			function displayGenerations(brandName) {
+				const modalGeneration = document.querySelector('.modal__generation')
+				modalGeneration.innerHTML = '' // Очищаем текущие данные
+
+				if (generation[brandName] && generation[brandName].length > 0) {
+					const generations = generation[brandName]
+					generations.forEach(gen => {
+						const genDiv = document.createElement('li')
+						genDiv.classList.add('modal__generation-list')
+						const genSpan = document.createElement('span')
+						const modelCountSpan = document.createElement('span')
+						modelCountSpan.classList.add('modal__brand-quantity')
+						genSpan.textContent = gen
+						modelCountSpan.textContent = ` (${
+							models[brandName] ? models[brandName].length : 0
+						})`
+						genDiv.appendChild(genSpan)
+						genDiv.appendChild(modelCountSpan)
+						modalGeneration.appendChild(genDiv)
+						genDiv.addEventListener('click', function() {
+							displaySelectedGeneration(gen)
+							const activeCarButton = document.querySelector(
+								'.modal__button.modal__button-active[data-button="car"]'
+							)
+							if (activeCarButton) {
+								activeCarButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
+							}
+							const activeGenerationButton = document.querySelector(
+								'.modal__button.modal__button-active[data-button="generation"]'
+							)
+							if (activeGenerationButton) {
+								activeGenerationButton.classList.remove('modal__button-active') // Снимаем активный класс с кнопки "Поколение"
+							}
+							document
+								.querySelector('.modal__button[data-button="car"]')
+								.classList.add('modal__button-active') // Активируем кнопку "Автомобиль"
+						})
+					})
+				} else {
+					const noGenerationDiv = document.createElement('li')
+					const noGenerationSpan = document.createElement('span')
+					noGenerationSpan.textContent =
+						'Нет информации о поколениях для данной марки.'
+					noGenerationDiv.appendChild(noGenerationSpan)
+					modalGeneration.appendChild(noGenerationDiv)
 				}
-				const modalButton = document.querySelector('.modal__button')
-				if (modalButton) {
-					modalButton.classList.add('modal__button-active') // Устанавливаем активный класс для кнопки
+			}
+
+			function displaySelectedGeneration(gen) {
+				const selectedGenerationList = document.querySelector(
+					'.selected-generation__list'
+				)
+				selectedGenerationList.innerHTML = '' // Очищаем текущие данные
+
+				const genDiv = document.createElement('li')
+				const genSpan = document.createElement('span')
+				genSpan.textContent = gen
+				genDiv.appendChild(genSpan)
+				selectedGenerationList.appendChild(genDiv)
+			}
+			// Функция для обновления активного состояния кнопки
+			function updateActiveButton(clickedButton) {
+				const activeBrandButton = document.querySelector(
+					'.modal__button.modal__button-active[data-button="brand"]'
+				)
+				if (activeBrandButton) {
+					activeBrandButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки с data-button="brand"
+				}
+				if (clickedButton) {
+					clickedButton.classList.add('modal__button-active') // Добавляем активный класс к кнопке с data-button="model"
 				}
 			}
 

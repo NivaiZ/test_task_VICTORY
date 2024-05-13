@@ -40,5 +40,9 @@
 		"Changan": ["ALSVIN", "Lamore", "CS55PLUS"],
 		"Skoda": ["Octavia", "Rapid", "Kodiaq"],
 		"Subaru": ["Outback", "Forester", "Impreza"]
+	},
+	"generation": {
+		"Audi": ["I", "II"],
+		"Ford": ["V", "VX"]
 	}
 }

@@ -64,6 +64,18 @@
 	cursor: pointer;
 }
 
+.modal__model {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	line-height: 19.6px;
+	width: 187px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid var(--gray--extra);
+	cursor: pointer;
+}
+
 .modal__data {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
