@@ -1,0 +1,12 @@
+{
+	"brands": [
+		{ "name": "Audi", "logo": "audi__logo.svg" },
+		{ "name": "Ford", "logo": "ford_logo.png" },
+		{ "name": "BMW", "logo": "bmw_logo.png" }
+	],
+	"models": {
+		"Toyota": ["Camry", "Corolla"],
+		"Ford": ["Focus", "Fiesta"],
+		"BMW": ["X5", "X3"]
+	}
+}

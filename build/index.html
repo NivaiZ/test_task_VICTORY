@@ -4,6 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Получите выгодный автокредит быстро и легко. Выберите лучшие условия для покупки вашего идеального автомобиля с нашими индивидуальными кредитными предложениями. Подайте заявку сейчас!"
+		/>
+		<meta name="keywords" content="автокредит, кредит на автомобиль, выгодные автокредиты, автокредит без первоначального взноса, автокредит онлайн" />
+		<meta name="robots" content="index, follow" />
+
 		<title>Тестовое задание для компании VICTORY group</title>
 		<link rel="stylesheet" href="./css/main.css" />
 
@@ -140,8 +147,11 @@
 						<fieldset class="form__fieldset">
 							<div class="form__box">
 								<label class="form__label" for="input-car">Автомобиль</label>
-								<button class="form__button" type="button">
+								<button class="form__button" type="button" data-fancybox="" data-src="#dialog-content">
 									<span class="form__sign">Выбрать автомобиль</span>
+									<svg class="form__icon">
+										<use href="./img/svgsprite/sprite.symbol.svg#arrow"></use>
+									</svg>
 								</button>
 							</div>
 
@@ -532,6 +542,39 @@
 						</form>
 					</div>
 				</div>
+			</section>
+			<section class="modal" style="display: none;" id="dialog-content">
+				<div class="modal__box">
+					<strong class="modal__text">Выберете автомобиль</strong>
+				</div>
+
+				<ul class="modal__list">
+					<li class="modal__item">
+						<button class="modal__button" type="button" data-button="acitve">
+							<span class="modal__sign">1. Марка</span>
+						</button>
+					</li>
+
+					<li class="modal__item">
+						<button class="modal__button" type="button">
+							<span class="modal__sign">2. Модель</span>
+						</button>
+					</li>
+
+					<li class="modal__item">
+						<button class="modal__button" type="button">
+							<span class="modal__sign">3. Поколение</span>
+						</button>
+					</li>
+
+					<li class="modal__item">
+						<button class="modal__button" type="button">
+							<span class="modal__sign">4. Автомобиль</span>
+						</button>
+					</li>
+				</ul>
+
+				<ul class="modal__data"></ul>
 			</section>
 		</main>
 		<footer class="footer">
