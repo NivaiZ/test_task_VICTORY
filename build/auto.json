@@ -44,5 +44,12 @@
 	"generation": {
 		"Audi": ["I", "II"],
 		"Ford": ["V", "VX"]
+	},
+	"card": {
+		"logo": "plug.png",
+		"name": "ford S-MAX",
+		"year": "2018",
+		"v": "2.0",
+		"ls": "150 л.с"
 	}
 }

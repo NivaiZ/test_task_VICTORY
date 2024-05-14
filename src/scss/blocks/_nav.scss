@@ -16,3 +16,16 @@
 	font-size: 18px;
 	line-height: 25.2px;
 }
+
+@media (max-width: 1224px) {
+	.nav__list {
+		margin-left: 0;
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 767px) {
+	.nav__menu {
+		flex-direction: column;
+	}
+}

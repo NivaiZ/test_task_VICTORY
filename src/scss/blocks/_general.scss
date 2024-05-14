@@ -38,3 +38,16 @@
 .general__breadcrumbs {
 	padding: 30px 0 30px 0;
 }
+
+@media (max-width: 1224px) {
+	.general__inner {
+		left: 50px;
+		top: 30%;
+	}
+}
+
+@media (max-width: 767px) {
+	.general__inner {
+		left: 10px;
+	}
+}

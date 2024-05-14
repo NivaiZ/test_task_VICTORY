@@ -15,3 +15,10 @@
 	line-height: 25.2px;
 	color: var(--page-bg);
 }
+
+@media (max-width: 767px) {
+	.button__application {
+		min-width: unset;
+		width: 250px;
+	}
+}

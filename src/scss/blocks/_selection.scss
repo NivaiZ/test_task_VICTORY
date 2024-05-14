@@ -34,3 +34,11 @@
 .selection__heading {
 	margin-bottom: 35px;
 }
+
+@media (max-width: 1660px) {
+	.selection {
+		.form__picture {
+			position: static;
+		}
+	}
+}

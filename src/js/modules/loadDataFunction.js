@@ -149,9 +149,9 @@ export default function loadDataFunction() {
 						const modelCountSpan = document.createElement('span')
 						modelCountSpan.classList.add('modal__brand-quantity')
 						genSpan.textContent = gen
-						modelCountSpan.textContent = ` (${
+						modelCountSpan.textContent = ` ${
 							models[brandName] ? models[brandName].length : 0
-						})`
+						}`
 						genDiv.appendChild(genSpan)
 						genDiv.appendChild(modelCountSpan)
 						modalGeneration.appendChild(genDiv)
@@ -172,6 +172,7 @@ export default function loadDataFunction() {
 							document
 								.querySelector('.modal__button[data-button="car"]')
 								.classList.add('modal__button-active') // Активируем кнопку "Автомобиль"
+							modalGeneration.style.display = 'none' // Скрываем список поколений
 						})
 					})
 				} else {
@@ -183,19 +184,56 @@ export default function loadDataFunction() {
 					modalGeneration.appendChild(noGenerationDiv)
 				}
 			}
+			document
+				.querySelectorAll('.modal__generation-list')
+				.forEach(genListItem => {
+					genListItem.addEventListener('click', function() {
+						const modalGeneration = document.querySelector('.modal__generation')
+						modalGeneration.style.display = 'none' // Скрываем список поколений
+					})
+				})
 
 			function displaySelectedGeneration(gen) {
 				const selectedGenerationList = document.querySelector(
-					'.selected-generation__list'
+					'.modal__selection-list'
 				)
 				selectedGenerationList.innerHTML = '' // Очищаем текущие данные
 
-				const genDiv = document.createElement('li')
-				const genSpan = document.createElement('span')
-				genSpan.textContent = gen
-				genDiv.appendChild(genSpan)
-				selectedGenerationList.appendChild(genDiv)
+				// Создаем отдельные div для изображения и остального контента
+				const imageDiv = document.createElement('div')
+				const contentDiv = document.createElement('div')
+
+				// Создаем HTML-элементы для отображения данных из раздела card
+				const cardLogo = document.createElement('img')
+				const cardName = document.createElement('span')
+				const cardYear = document.createElement('span')
+				const cardV = document.createElement('span')
+				const cardLS = document.createElement('span')
+
+				// Получаем данные из раздела card вашего JSON
+				const cardData = data.card
+
+				// Устанавливаем значения атрибутов и текстовое содержимое для созданных элементов
+				cardLogo.src = `img/${cardData.logo}`
+				cardName.textContent = cardData.name
+				cardYear.textContent = `Year: ${cardData.year}`
+				cardV.textContent = `V: ${cardData.v}`
+				cardLS.textContent = `LS: ${cardData.ls}`
+
+				// Добавляем изображение в отдельный div
+				imageDiv.appendChild(cardLogo)
+
+				// Добавляем остальной контент в отдельный div
+				contentDiv.appendChild(cardName)
+				contentDiv.appendChild(cardYear)
+				contentDiv.appendChild(cardV)
+				contentDiv.appendChild(cardLS)
+
+				// Добавляем созданные div в контейнер для отображения данных
+				selectedGenerationList.appendChild(imageDiv)
+				selectedGenerationList.appendChild(contentDiv)
 			}
+
 			// Функция для обновления активного состояния кнопки
 			function updateActiveButton(clickedButton) {
 				const activeBrandButton = document.querySelector(

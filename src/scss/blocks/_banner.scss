@@ -24,3 +24,14 @@
 	top: 65px;
 	left: 40px;
 }
+
+@media (max-width: 1224px) {
+	.banner__text {
+		font-size: 20px;
+		line-height: 25px;
+	}
+
+	.banner__box {
+		top: 0;
+	}
+}

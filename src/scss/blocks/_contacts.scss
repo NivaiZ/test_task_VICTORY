@@ -28,3 +28,14 @@
 .contacts__link {
 	color: var(--text-color);
 }
+
+@media (max-width: 1224px) {
+	.contacts__item {
+		margin-right: 0;
+	}
+
+	.contacts__list {
+		display: grid;
+		gap: 15px;
+	}
+}

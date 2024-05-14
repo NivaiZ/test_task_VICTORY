@@ -179,3 +179,25 @@
 	width: 24px;
 	height: 24px;
 }
+
+@media (max-width: 1224px) {
+	.form__action {
+		flex-direction: column;
+	}
+
+	.form__fieldset {
+		width: 100%;
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 767px) {
+	.form__strong {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.form__action {
+		padding: 20px;
+	}
+}

@@ -7,6 +7,11 @@
 		svg {
 			color: var(--text-color);
 		}
+
+		&:hover {
+			background-color: transparent;
+			top: 20px;
+		}
 	}
 
 	&::before {
@@ -112,4 +117,32 @@
 	font-size: 20px;
 	line-height: 24.38px;
 	color: var(--text-color);
+}
+
+.modal__generation {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.modal__generation-list {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	line-height: 19.6px;
+	width: 187px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid var(--gray--extra);
+	cursor: pointer;
+
+	.modal__brand-quantity {
+		display: block;
+		text-align: end;
+	}
+}
+
+.modal__selection-list {
+	margin-top: 20px;
 }

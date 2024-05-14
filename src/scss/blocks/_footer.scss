@@ -11,3 +11,9 @@
 	// временная высота для футера, потом удалить
 	height: 676px;
 }
+
+@media (max-width: 1224px) {
+	.footer__wrapper {
+		height: 200px;
+	}
+}

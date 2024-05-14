@@ -20,3 +20,23 @@
 .partners__logo {
 	padding-top: 40px;
 }
+
+@media (max-width: 1224px) {
+	.partners__list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.partners__list {
+		grid-template-columns: 1fr;
+	}
+
+	.partners {
+		margin-top: 20px;
+	}
+
+	.partners__heading {
+		padding-top: 20px;
+	}
+}
