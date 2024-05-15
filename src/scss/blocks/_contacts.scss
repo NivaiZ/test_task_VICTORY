@@ -29,6 +29,19 @@
 	color: var(--text-color);
 }
 
+@media (max-width: 767px) {
+	.contacts__element {
+		font-size: 14px;
+		line-height: 20px;
+	}
+}
+
+@media (max-width: 991px) {
+	.contacts__list {
+		padding: 20px;
+	}
+}
+
 @media (max-width: 1224px) {
 	.contacts__item {
 		margin-right: 0;

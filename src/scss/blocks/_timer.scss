@@ -41,3 +41,10 @@
 	line-height: 19.6px;
 	margin: 5px 0 0 5px;
 }
+
+@media (max-width: 767px) {
+	.timer__number {
+		font-size: 20px;
+		line-height: 25px;
+	}
+}

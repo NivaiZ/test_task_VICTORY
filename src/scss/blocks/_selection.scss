@@ -35,6 +35,21 @@
 	margin-bottom: 35px;
 }
 
+@media (max-width: 767px) {
+	.selection {
+		margin-top: 40px;
+		padding-bottom: 40px;
+
+		.form__input {
+			width: unset;
+		}
+
+		.form__picture {
+			margin-top: 20px;
+		}
+	}
+}
+
 @media (max-width: 1660px) {
 	.selection {
 		.form__picture {

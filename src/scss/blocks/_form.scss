@@ -200,4 +200,26 @@
 	.form__action {
 		padding: 20px;
 	}
+
+	.form__input {
+		width: 100%;
+	}
+
+	.form__wrapper {
+		.noUi-pips {
+			display: flex;
+			gap: 20px;
+			overflow-y: hidden;
+			overflow-x: scroll;
+			padding: 0 15px 30px 15px;
+		}
+
+		.noUi-value {
+			position: static;
+		}
+	}
+
+	.form__box--margin {
+		margin-bottom: 101px;
+	}
 }

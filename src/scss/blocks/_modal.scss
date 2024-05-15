@@ -1,11 +1,17 @@
 .modal {
 	position: relative;
+	width: 1096px;
+	border-radius: 8px !important;
 
 	.f-button.is-close-btn {
 		background-color: var(--page-bg);
+		top: 35px !important;
+		right: 37px !important;
 
 		svg {
 			color: var(--text-color);
+			width: 30px;
+			height: 30px;
 		}
 
 		&:hover {
@@ -145,4 +151,57 @@
 
 .modal__selection-list {
 	margin-top: 20px;
+}
+
+@media (max-width: 991px) {
+	.modal__sign {
+		white-space: nowrap;
+	}
+
+	.modal__list {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.modal__item {
+		margin-right: 0;
+	}
+
+	.modal__button {
+		width: 100%;
+	}
+
+	.modal.fancybox__content {
+		padding: 10px;
+		overflow: hidden;
+
+		&::before {
+			content: none;
+		}
+
+		.f-button.is-close-btn {
+			top: 30px;
+		}
+	}
+
+	.modal__data {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.modal__brand {
+		width: 100%;
+	}
+
+	.modal__model {
+		width: 100%;
+	}
+
+	.modal__generation-list {
+		width: 100%;
+	}
+
+	.modal__generation {
+		grid-template-columns: 1fr;
+	}
 }

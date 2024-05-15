@@ -1,193 +1,143 @@
 export default function loadDataFunction() {
-	// Загрузка данных из JSON-файла
-	fetch('auto.json')
-		.then(response => response.json())
-		.then(data => {
-			const brands = data.brands
-			const models = data.models
-			const generation = data.generation
+  // Загрузка данных из JSON-файла
+  fetch('auto.json')
+    .then(response => response.json())
+    .then(data => {
+      const { brands, models, generation } = data;
 
 			// Функция для обновления списка марок
 			function updateBrandsList(event) {
-				const clickedButton = event.target.closest('[data-button="brand"]')
-				if (!clickedButton) return // Выходим, если клик не был по кнопке
-				const modalButtons = document.querySelectorAll('.modal__button')
-				modalButtons.forEach(button =>
-					button.classList.remove('modal__button-active')
-				)
+        const clickedButton = event.target.closest('[data-button="brand"]');
+        if (!clickedButton) return;
 
-				// Проверяем, была ли нажата та же кнопка data-button="brand"
-				const isActiveBrandButton = clickedButton.classList.contains(
-					'modal__button-active'
-				)
+        document.querySelectorAll('.modal__button').forEach(button =>
+          button.classList.remove('modal__button-active')
+        );
 
-				// Если нажата другая кнопка data-button="brand", устанавливаем активный класс
-				if (!isActiveBrandButton) {
-					clickedButton.classList.add('modal__button-active')
+        clickedButton.classList.toggle('modal__button-active');
 
-					// Удаляем активный класс у кнопки data-button="model"
-					const activeModelButton = document.querySelector(
-						'.modal__button.modal__button-active[data-button="model"]'
-					)
-					if (activeModelButton) {
-						activeModelButton.classList.remove('modal__button-active')
-					}
-				}
-				const modalData = document.querySelector('.modal__data')
-				modalData.innerHTML = '' // Очищаем текущие данные
+        const activeModelButton = document.querySelector(
+          '.modal__button.modal__button-active[data-button="model"]'
+        );
+        if (activeModelButton) {
+          activeModelButton.classList.remove('modal__button-active');
+        }
 
-				brands.forEach(brand => {
-					const brandLi = document.createElement('li')
-					const brandContainer = document.createElement('div')
-					const brandSpan = document.createElement('span')
-					const brandQuantity = document.createElement('span')
-					const brandImg = document.createElement('img')
+        const modalData = document.querySelector('.modal__data');
+        modalData.innerHTML = '';
 
-					brandLi.className = 'modal__brand'
-					brandContainer.className = 'modal__brand-container'
-					brandSpan.className = 'modal__brand-name'
-					brandImg.src = `img/${brand.logo}`
+        brands.forEach(brand => {
+          const brandLi = document.createElement('li');
+          brandLi.className = 'modal__brand';
 
-					if (models[brand.name] !== undefined) {
-						brandQuantity.textContent = ` ${models[brand.name].length}`
-					} else {
-						brandQuantity.textContent = ' (0)'
-					}
+          const brandContainer = document.createElement('div');
+          brandContainer.className = 'modal__brand-container';
 
-					brandQuantity.className = 'modal__brand-quantity'
+          const brandSpan = document.createElement('span');
+          brandSpan.className = 'modal__brand-name';
+          brandSpan.textContent = brand.name;
 
-					brandContainer.appendChild(brandImg)
-					brandContainer.appendChild(brandSpan)
-					brandLi.appendChild(brandContainer)
-					brandLi.appendChild(brandQuantity)
-					brandSpan.textContent = brand.name
-					brandLi.onclick = function() {
-						updateModelsList(brand.name)
-						updateActiveButton(
-							document.querySelector('.modal__button[data-button="model"]')
-						) // Устанавливаем активный класс для кнопки модели
-					}
+          const brandQuantity = document.createElement('span');
+          brandQuantity.className = 'modal__brand-quantity';
+          brandQuantity.textContent = ` ${models[brand.name]?.length || 0}`;
 
-					modalData.appendChild(brandLi)
-				})
-			}
+          const brandImg = document.createElement('img');
+          brandImg.src = `img/${brand.logo}`;
+
+          brandContainer.appendChild(brandImg);
+          brandContainer.appendChild(brandSpan);
+          brandLi.appendChild(brandContainer);
+          brandLi.appendChild(brandQuantity);
+
+          brandLi.onclick = () => {
+            updateModelsList(brand.name);
+            updateActiveButton(document.querySelector('.modal__button[data-button="model"]'));
+          };
+
+          modalData.appendChild(brandLi);
+        });
+      }
 
 			// Функция для обновления списка моделей
 			function updateModelsList(brand) {
-				const modalData = document.querySelector('.modal__data')
-				const modalGeneration = document.querySelector('.modal__generation')
-				modalData.innerHTML = '' // Очищаем текущие данные
-				modalGeneration.innerHTML = '' // Очищаем текущие данные
+        const modalData = document.querySelector('.modal__data');
+        const modalGeneration = document.querySelector('.modal__generation');
+        modalData.innerHTML = '';
+        modalGeneration.innerHTML = '';
 
-				models[brand].forEach(model => {
-					const modelDiv = document.createElement('li')
-					modelDiv.className = 'modal__model'
+        models[brand].forEach(model => {
+          const modelDiv = document.createElement('li');
+          modelDiv.className = 'modal__model';
 
-					const modelSpan = document.createElement('span')
-					modelSpan.textContent = model
+          const modelSpan = document.createElement('span');
+          modelSpan.textContent = model;
 
-					const generationQuantitySpan = document.createElement('span')
-					generationQuantitySpan.classList.add('modal__brand-quantity')
-					generationQuantitySpan.textContent = ` ${
-						generation[brand] && generation[brand].length
-							? generation[brand].length
-							: 0
-					}`
+          const generationQuantitySpan = document.createElement('span');
+          generationQuantitySpan.classList.add('modal__brand-quantity');
+          generationQuantitySpan.textContent = ` ${generation[brand]?.length || 0}`;
 
-					modelDiv.appendChild(modelSpan)
-					modelDiv.appendChild(generationQuantitySpan)
+          modelDiv.appendChild(modelSpan);
+          modelDiv.appendChild(generationQuantitySpan);
 
-					modelDiv.addEventListener('click', function() {
-						displayGenerations(brand, model) // Отображаем поколения при клике на модель
+          modelDiv.addEventListener('click', () => {
+            displayGenerations(brand, model);
+            updateActiveButton(document.querySelector('.modal__button[data-button="generation"]'));
+            modalData.style.display = 'none';
+          });
 
-						const activeModelButton = document.querySelector(
-							'.modal__button.modal__button-active[data-button="model"]'
-						)
-						if (activeModelButton) {
-							activeModelButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
-						}
-						const activeGenerationButton = document.querySelector(
-							'.modal__button.modal__button-active[data-button="generation"]'
-						)
-						if (activeGenerationButton) {
-							activeGenerationButton.classList.remove('modal__button-active') // Снимаем активный класс с кнопки "Поколение"
-						}
-						document
-							.querySelector('.modal__button[data-button="generation"]')
-							.classList.add('modal__button-active') // Активируем кнопку "Поколение"
-						modalData.style.display = 'none' // Скрываем список моделей
-					})
+          modalData.appendChild(modelDiv);
+        });
 
-					modalData.appendChild(modelDiv)
-				})
-
-				// Добавляем обработчик клика на кнопку "Модель", чтобы показать снова список моделей
-				const modelButton = document.querySelector(
-					'.modal__button[data-button="model"]'
-				)
-				modelButton.addEventListener('click', function() {
-					modalData.style.display = 'grid' // Показываем список моделей
-					const activeButton = document.querySelector(
-						'.modal__button.modal__button-active[data-button="model"]'
-					)
-					if (activeButton) {
-						activeButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
-					}
-				})
-			}
+        const modelButton = document.querySelector('.modal__button[data-button="model"]');
+        modelButton.addEventListener('click', () => {
+          modalData.style.display = 'grid';
+          updateActiveButton(modelButton);
+        });
+      }
 
 			function displayGenerations(brandName) {
-				const modalGeneration = document.querySelector('.modal__generation')
-				modalGeneration.innerHTML = '' // Очищаем текущие данные
-
+				const modalGeneration = document.querySelector('.modal__generation');
+				modalGeneration.innerHTML = ''; // Очищаем текущие данные
+			
 				if (generation[brandName] && generation[brandName].length > 0) {
-					const generations = generation[brandName]
+					const generations = generation[brandName];
 					generations.forEach(gen => {
-						const genDiv = document.createElement('li')
-						genDiv.classList.add('modal__generation-list')
-						const genSpan = document.createElement('span')
-						const modelCountSpan = document.createElement('span')
-						modelCountSpan.classList.add('modal__brand-quantity')
-						genSpan.textContent = gen
-						modelCountSpan.textContent = ` ${
-							models[brandName] ? models[brandName].length : 0
-						}`
-						genDiv.appendChild(genSpan)
-						genDiv.appendChild(modelCountSpan)
-						modalGeneration.appendChild(genDiv)
-						genDiv.addEventListener('click', function() {
-							displaySelectedGeneration(gen)
-							const activeCarButton = document.querySelector(
-								'.modal__button.modal__button-active[data-button="car"]'
-							)
+						const genDiv = document.createElement('li');
+						genDiv.classList.add('modal__generation-list');
+						const genSpan = document.createElement('span');
+						const modelCountSpan = document.createElement('span');
+						modelCountSpan.classList.add('modal__brand-quantity');
+						genSpan.textContent = gen;
+						modelCountSpan.textContent = ` ${models[brandName] ? models[brandName].length : 0}`;
+						genDiv.appendChild(genSpan);
+						genDiv.appendChild(modelCountSpan);
+						modalGeneration.appendChild(genDiv);
+						genDiv.addEventListener('click', function () {
+							displaySelectedGeneration(gen);
+							const activeCarButton = document.querySelector('.modal__button.modal__button-active[data-button="car"]');
 							if (activeCarButton) {
-								activeCarButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки
+								activeCarButton.classList.remove('modal__button-active'); // Снимаем активный класс с предыдущей кнопки
 							}
-							const activeGenerationButton = document.querySelector(
-								'.modal__button.modal__button-active[data-button="generation"]'
-							)
+							const activeGenerationButton = document.querySelector('.modal__button.modal__button-active[data-button="generation"]');
 							if (activeGenerationButton) {
-								activeGenerationButton.classList.remove('modal__button-active') // Снимаем активный класс с кнопки "Поколение"
+								activeGenerationButton.classList.remove('modal__button-active'); // Снимаем активный класс с кнопки "Поколение"
 							}
-							document
-								.querySelector('.modal__button[data-button="car"]')
-								.classList.add('modal__button-active') // Активируем кнопку "Автомобиль"
-							modalGeneration.style.display = 'none' // Скрываем список поколений
-						})
-					})
+							document.querySelector('.modal__button[data-button="car"]').classList.add('modal__button-active'); // Активируем кнопку "Автомобиль"
+							modalGeneration.style.display = 'none'; // Скрываем список поколений
+						});
+					});
 				} else {
-					const noGenerationDiv = document.createElement('li')
-					const noGenerationSpan = document.createElement('span')
-					noGenerationSpan.textContent =
-						'Нет информации о поколениях для данной марки.'
-					noGenerationDiv.appendChild(noGenerationSpan)
-					modalGeneration.appendChild(noGenerationDiv)
+					const noGenerationDiv = document.createElement('li');
+					const noGenerationSpan = document.createElement('span');
+					noGenerationSpan.textContent = 'Нет информации о поколениях для данной марки.';
+					noGenerationDiv.appendChild(noGenerationSpan);
+					modalGeneration.appendChild(noGenerationDiv);
 				}
 			}
 			document
 				.querySelectorAll('.modal__generation-list')
 				.forEach(genListItem => {
-					genListItem.addEventListener('click', function() {
+					genListItem.addEventListener('click', function () {
 						const modalGeneration = document.querySelector('.modal__generation')
 						modalGeneration.style.display = 'none' // Скрываем список поколений
 					})
@@ -235,41 +185,15 @@ export default function loadDataFunction() {
 			}
 
 			// Функция для обновления активного состояния кнопки
-			function updateActiveButton(clickedButton) {
-				const activeBrandButton = document.querySelector(
-					'.modal__button.modal__button-active[data-button="brand"]'
-				)
-				if (activeBrandButton) {
-					activeBrandButton.classList.remove('modal__button-active') // Снимаем активный класс с предыдущей кнопки с data-button="brand"
-				}
-				if (clickedButton) {
-					clickedButton.classList.add('modal__button-active') // Добавляем активный класс к кнопке с data-button="model"
-				}
-			}
+			function updateActiveButton(button) {
+        document.querySelectorAll('.modal__button').forEach(btn =>
+          btn.classList.remove('modal__button-active')
+        );
+        button.classList.add('modal__button-active');
+      }
 
 			// Функция для обновления активного состояния моделей
-			function updateActiveModel(activeModel) {
-				// Удаляем класс active со всех моделей
-				document.querySelectorAll('.model').forEach(modelElement => {
-					modelElement.classList.remove('modal__button-active')
-				})
-				// Добавляем класс active к активной модели
-				activeModel.classList.add('modal__button-active')
-			}
-
-			// Назначение обработчика клика для кнопки "Марка"
-			const modalButtons = document.querySelectorAll('.modal__button')
-			modalButtons.forEach(button =>
-				button.addEventListener('click', updateBrandsList)
-			)
-
-			// Назначение обработчика клика для моделей
-			const modelItems = document.querySelectorAll('.model')
-			modelItems.forEach(model =>
-				model.addEventListener('click', function() {
-					updateActiveModel(model)
-				})
-			)
-		})
+			document.querySelector('.modal__button[data-button="brand"]').addEventListener('click', updateBrandsList);
+    })
 		.catch(error => console.error('Ошибка загрузки данных:', error))
 }
