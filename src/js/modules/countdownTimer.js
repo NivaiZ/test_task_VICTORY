@@ -1,6 +1,6 @@
 export default function countdownTimer() {
 	// конечная дата, например 10 мая 2024
-	const deadline = new Date(2024, 4, 14)
+	const deadline = new Date(2024, 4, 18)
 	// id таймера
 	let timerId = null
 	// склонение числительных

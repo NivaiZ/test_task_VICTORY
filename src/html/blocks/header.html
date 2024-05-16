@@ -1,6 +1,6 @@
-<header class="header">
+<header class="header header__flex">
 	<div class="header__contacts">
-		<ul class="contacts__list">
+		<ul class="contacts__list" data-da=".burger__wrapper, 999, 2">
 			<li class="contacts__item">
 				<svg class="contacts__icon">
 					<use href="./img/svgsprite/sprite.symbol.svg#location__logo"></use>
@@ -32,7 +32,7 @@
 				<img src="./../img/logo.png" alt="лого" />
 			</div>
 
-			<ul class="nav__list">
+			<ul class="nav__list" data-da=".burger__wrapper, 999, 2">
 				<li class="nav__item">
 					<a class="nav__link" href="#">Главная</a>
 				</li>
@@ -64,4 +64,12 @@
 			</ul>
 		</nav>
 	</div>
+
+	<aside class='header__burger burger'>
+		<button class='burger__button' type='button' aria-label='Мобильное меню' data-action='click'>
+			<span class="burger-menu__toggle"></span>
+		</button>
+		<div class='burger__wrapper'>
+		</div>
+	</aside>
 </header>

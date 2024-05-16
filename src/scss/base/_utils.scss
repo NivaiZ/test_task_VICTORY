@@ -38,3 +38,16 @@
 .flex-center {
 	justify-content: center;
 }
+
+.background__linear {
+	&::before {
+		content: "";
+		background-color: rgba(3, 8, 13, .32);
+		height: 100vh;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100vw;
+		z-index: 10;
+	}
+}

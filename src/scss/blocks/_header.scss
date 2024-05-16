@@ -2,3 +2,20 @@
 	background-color: var(--header__nav);
 	padding: 20px 0 20px 0;
 }
+
+@media (max-width: 991px) {
+	.header__contacts {
+		display: none;
+	}
+
+	.header__flex {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		padding-right: 15px;
+	}
+
+	.header__nav {
+		width: 215px;
+	}
+}
