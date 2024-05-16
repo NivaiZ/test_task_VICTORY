@@ -1,0 +1,55 @@
+{
+	"brands": [
+		{ "name": "Audi", "logo": "audi__logo.svg" },
+		{ "name": "BMW", "logo": "BMW__logo.svg" },
+		{ "name": "Changan", "logo": "changan__logo.svg" },
+		{ "name": "Chery", "logo": "chery__logo.svg" },
+		{ "name": "Chevrolet", "logo": "chevrolet__logo.svg" },
+		{ "name": "Skoda", "logo": "skoda__logo.svg" },
+		{ "name": "Subaru", "logo": "subaru__logo.svg" },
+		{ "name": "Suzuki", "logo": "suzuki__logo.svg" },
+		{ "name": "Ford", "logo": "ford__logo.svg" },
+		{ "name": "Geely", "logo": "geely__logo.svg" },
+		{ "name": "Haval", "logo": "haval__logo.svg" },
+		{ "name": "Honda", "logo": "honda__logo.svg" },
+		{ "name": "Hyundai", "logo": "hyundai__logo.svg" },
+		{ "name": "Infiniti", "logo": "infiniti__logo.svg" },
+		{ "name": "Jeep", "logo": "jeep__logo.svg" },
+		{ "name": "Kia", "logo": "kia__logo.svg" },
+		{ "name": "Lada", "logo": "lada__logo.svg" },
+		{ "name": "Land Rover", "logo": "landrover__logo.svg" },
+		{ "name": "Lexus", "logo": "lexus__logo.svg" },
+		{ "name": "Lifan", "logo": "lifan__logo.svg" },
+		{ "name": "Mazda", "logo": "mazda__logo.svg" },
+		{ "name": "Mercedes-Benz", "logo": "mercedesbenz__logo.svg" },
+		{ "name": "Mitsubishi", "logo": "mitsubishi__logo.svg" },
+		{ "name": "Nissan", "logo": "nissan__logo.svg" },
+		{ "name": "Opel", "logo": "opel__logo.svg" },
+		{ "name": "Peugeot", "logo": "peugeot__logo.svg" },
+		{ "name": "Porsche", "logo": "porsche__logo.svg" },
+		{ "name": "Renault", "logo": "renault__logo.svg" },
+		{ "name": "Skoda", "logo": "skoda__logo.svg" },
+		{ "name": "Suzuki", "logo": "suzuki__logo.svg" }
+	],
+	"models": {
+		"Toyota": ["Camry", "Corolla"],
+		"Ford": ["Focus", "Fiesta"],
+		"BMW": ["X5", "X3"],
+		"Audi": ["A3", "A4"],
+		"Chery": ["Tiggo 8", "Tiggo 7"],
+		"Changan": ["ALSVIN", "Lamore", "CS55PLUS"],
+		"Skoda": ["Octavia", "Rapid", "Kodiaq"],
+		"Subaru": ["Outback", "Forester", "Impreza"]
+	},
+	"generation": {
+		"Audi": ["I", "II"],
+		"Ford": ["V", "VX"]
+	},
+	"card": {
+		"logo": "plug.png",
+		"name": "ford S-MAX",
+		"year": "2018",
+		"v": "2.0",
+		"ls": "150 л.с"
+	}
+}
