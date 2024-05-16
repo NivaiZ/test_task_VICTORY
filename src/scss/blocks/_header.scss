@@ -19,3 +19,9 @@
 		width: 215px;
 	}
 }
+
+@media (min-width: 992px) and (max-width: 1439px) {
+	.header__contacts {
+		padding: 20px 0 20px 20px;
+	}
+}

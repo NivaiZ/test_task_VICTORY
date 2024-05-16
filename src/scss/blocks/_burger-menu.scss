@@ -104,14 +104,22 @@
 	}
 }
 
-.burger-menu__nav {
-	@media (max-width: 1250px) {
-		display: block;
-		width: 100%;
+@media (max-width: 767px) {
+	.burger__wrapper--js {
+		.contacts__list {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 991px) {
+
+	.burger-menu__nav {
+		display: block;
+		width: 100%;
+	}
+
 	.burger__wrapper {
 		display: none;
 	}
